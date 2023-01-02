@@ -19,7 +19,7 @@ On the flip side, I believe that Vietnamese stock market has achieved a lot of m
 
 As a start, I am examining the value factor first popularized by Fama & French (1992) in their paper "The Cross-Section of Expected Stock Returns" (https://onlinelibrary.wiley.com/doi/full/10.1111/j.1540-6261.1992.tb04398.x). Efficient market hypothesis (EMH) implies that the expected return on securities are a positive linear function of their market beta and nothing else other than beta can explain the cross-section of future returns. Beta is the slope in the regression of a security's return on the market's return. However, Fama & French's empirical tests showed that the relation between historical beta and future returns is weak, rather they propose firm size and book-to-market value (indicative of how 'cheap' the stock is) are predictive of cross-sectional stock returns.
 
-As of December 30, 2021: I am uploading my first research test in Jupyter Notebook of replicating the book-to-market value factor and methodologies of Fama & French, using 10-year historical period for Vietnamese stocks listed on the Ho Chi Minh Stock Exchange (HOSE) between 2012 and 2022. I chose to limit my research to stocks on HOSE rather than including the Hanoi Stock Exchange because the later has much weaker regulations & lower liquidity that may negatively affect the purities of data.
+As of January 1 2023: I am uploading my first research test in Jupyter Notebook of replicating the book-to-market value and size factor, following some methodologies of Fama & French, using 10-year historical period for Vietnamese stocks listed on the Ho Chi Minh Stock Exchange (HOSE) between 2012 and 2022. I chose to limit my research to stocks on HOSE rather than including the Hanoi Stock Exchange because the later has much weaker regulations & lower liquidity that may negatively affect the purities of data.
 
 ## Data
 The data is scraped systematically from FiinPro, a respected and widely used Vietnamese data platform.
@@ -87,8 +87,11 @@ Here I present a table and graph of cumulative returns (starting with $100 in 20
 This table below shoes the investable universe for each year, after screening for financial & pricing data availability and sectors, gradually increased as more companies IPO-ed and the market becomes more mature.
 <img width="627" alt="Screenshot 2022-12-30 at 19 30 04" src="https://user-images.githubusercontent.com/97810132/210119689-d9e6d776-780a-4d09-9a8d-31db75da6570.png">
 
-However, screening for minimum liquidity took out a lot of companies. This is a big issue in Vietnam if you are an institutional investor - a strategy might work but it would be difficult to scale up with lots of capital due to liquidity restrictions. However, the average trading volume has increased over time.
+However, screening for minimum liquidity took out a lot of companies. This is a big issue in Vietnam if you are an institutional investor - a strategy might work but it would be difficult to scale up and diversify with lots of capital due to liquidity restrictions. However, the average trading volume has increased over time.
 <img width="950" alt="Screenshot 2022-12-30 at 19 35 34" src="https://user-images.githubusercontent.com/97810132/210119809-1b2b227b-f3e4-416f-9d25-39eda60fe9a7.png">
+
+<img width="1236" alt="Screenshot 2023-01-02 at 00 31 34" src="https://user-images.githubusercontent.com/97810132/210197724-ecb5bc90-583d-45df-a153-57b24de2b4a3.png">
+
 
 It is also clear that portfolios with lower factor ranking consistently have higher average trading value while those ranked high are more illiquid but offer higher potential for returns. See my attached prinouts of individual portfolios ranked based on the value factor in the last 3 years.
 

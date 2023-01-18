@@ -1,5 +1,5 @@
 # AlphaResearchVietnamMarket
-A research repository to investigate quantitative investment strategies for Vietnamese stock market (Updated January 1, 2023)
+A research repository to investigate quantitative investment strategies for Vietnamese stock market (Updated January 18, 2023)
 
 ## Background
 Quantitative investment strategies are gaining traction, and I want to investigate which strategies can produce good alphas - excess risk-adjusted returns - in the context of Vietnamese stock market. Done correctly, quant investing can potentially help investors consistently beat the market, lower ideosyncratic risks through proper diversification, and impose discipline on stock selection.
@@ -17,9 +17,9 @@ Although quant strategies have been explored in most developed markets, efforts 
 
 On the flip side, I believe that Vietnamese stock market has achieved a lot of milestones and over time mitigate most if not all of the aforementioned drawbacks. It will only be a matter of time before investors become more sophisticated in Vietnamese stock market and quant hedge funds will be established here. I am curious to see whether some tried and true methods researched in other markets are applicable to Vietnam.
 
-As a start, I am examining the value factor first popularized by Fama & French (1992) in their paper "The Cross-Section of Expected Stock Returns" (https://onlinelibrary.wiley.com/doi/full/10.1111/j.1540-6261.1992.tb04398.x). Efficient market hypothesis (EMH) implies that the expected return on securities are a positive linear function of their market beta and nothing else other than beta can explain the cross-section of future returns. Beta is the slope in the regression of a security's return on the market's return. However, Fama & French's empirical tests showed that the relation between historical beta and future returns is weak, rather they propose firm size and book-to-market value (indicative of how 'cheap' the stock is) are predictive of cross-sectional stock returns.
+As a start, I am examining the size and value factors first popularized by Fama & French (1992) in their paper "The Cross-Section of Expected Stock Returns" (https://onlinelibrary.wiley.com/doi/full/10.1111/j.1540-6261.1992.tb04398.x). Efficient market hypothesis (EMH) implies that the expected return on securities are a positive linear function of their market beta and nothing else other than beta can explain the cross-section of future returns. Beta is the slope in the regression of a security's return on the market's return. However, Fama & French's empirical tests showed that the relation between historical beta and future returns is weak, rather they propose firm size and book-to-market value (indicative of how 'cheap' the stock is) are predictive of cross-sectional stock returns.
 
-As of January 1 2023: I am uploading my first research test in Jupyter Notebook of replicating the book-to-market value and size factor, following some methodologies of Fama & French, using 10-year historical period for Vietnamese stocks listed on the Ho Chi Minh Stock Exchange (HOSE) between 2012 and 2022. I chose to limit my research to stocks on HOSE rather than including the Hanoi Stock Exchange because the later has much weaker regulations & lower liquidity that may negatively affect the purities of data.
+As of January 18, 2023: I am uploading my latest research test in Jupyter Notebook of replicating the book-to-market value and size factor, following some methodologies of Fama & French with modifications to fit the context of Vietnamese market. I used 14-year historical period for Vietnamese stocks listed on the Ho Chi Minh Stock Exchange (HOSE) between December 2008 and Decemeber 2022. I chose to limit my research to stocks on HOSE rather than including the Hanoi Stock Exchange because the later has much weaker regulations & lower liquidity that may negatively affect the purities of data.
 
 ## Data
 The data is scraped systematically from FiinPro, a respected and widely used Vietnamese data platform.
@@ -31,42 +31,39 @@ The data is scraped systematically from FiinPro, a respected and widely used Vie
 - "trading_value_data.csv" contains historical monthly total trading value (as available) in VND of all companies on HOSE
 
 In my program, I take several steps to clean the data and select applicable universe as followed:
-- For each portfolio restructuring time T, remove companies that do not have desired accounting data for the most recent fiscal year
+- For each portfolio restructuring time T, remove companies that do not have desired accounting data at time T minus a look back period (i.e. 6 months).
 - For each portfolio restructuring time T, remove companies that do not have pricing data at time T
 - Remove companies that are banks, insurance companies, or financial services (mutual funds, etc) based on industry classification as they are not directly comparable to non-financial firms due to their high-leverage nature and different accounting metrics
-- For each portfolio restructuring time T, remove companies that do not meet minimum daily trading value (liquidity) of 50,000,000 VND (approx. $2000)
+- For each portfolio restructuring time T, remove companies that do not meet minimum daily trading value (liquidity) of 1 billion VND (approx. $50,000)
 
 ## Implementation
-The purpose of the program is to 1) rank the applicable companies in universe based on a quantitative factor, 2) put them into equal-sized portfolios (i.e. having equal number of stocks in each portfolio), and 4) compute the average monthly returns and risk metrics of these equal-sized portfolios over the backtesting period
+The purpose of the program is to 1) rank the applicable companies in universe based on a quantitative factor, 2) put them into portfolios (i.e. having equal number of stocks in each portfolio), and 4) compute the average monthly returns and risk metrics of these equal-sized portfolios over the backtesting period
 
 ### Factor definition
 I examine two factors presented by Fama & French: Size & Value
 
-Size factor here is defined as the market value (ME) at the time of purchase, equals the price at time T x the total share issued at the most recent fiscal year end.
+Size factor here is defined as the market value (ME) at the time of purchase, equals the price at time T x the total oustanding share at time T.
 
-Value factor here is defined as Book-to-market Equity (BE/ME). Book value (BE) is the most recent fiscal year-end total equity. Market value (ME) is the current price x the total shares issued at most recent fiscal year-end. To account for outliers and normalize the factor, I use the natural log of BE/ME. I exclude companies that have negative Book equity value.
-
-There are several issues, namely that I have not adjusted for preferred shares and total issued shares might not equal outstanding shares. Furthermore, given that the restructuring time is several months after the end of most recent fiscal year, number of shares outstanding might have increased/decreased due to new stock issuances or buybacks. However, those details are minute and can be adjusted later.
+Value factor here is defined as Book-to-market Equity (BE/ME). Book value (BE) is the total equity at time T-look back period. I exclude companies that have negative Book equity value.
 
 ### Holding period & Portfolios
-Like Fama & French, I restructure portfolios after 1-year holding period. Portfolios are formed at the end of June in year T and will be held until end of June in year T + 1.
+Like Fama & French, I restructure portfolios after 1-year holding period. Portfolios are formed with approx. the same number of stocks, based on the decile of the stock's factor ranking. For example, for a 14-year backtesting period, if we divide the universe into 5 portfolios each year, 70 unique portfolios would be form.
 
-I decided to use divide the 'applicable' universe in each year T to 5 portfolios holding roughly the same number of stocks, based on the decile of the stock's factor after sorting. That means for a 10-year backtesting period, 100 unique portfolios would be formed.
-
-One concern is that due to data availability and the size of Vietnamese stock market, there might not be enough companies in a portfolio to meet statistical standards. This will be addressed in more details.
+Due to data availability and the size of Vietnamese stock market, I realized that there were not enough companies in a portfolio if we choose to form 10 portfolios to meet statistical standards, especially in the early years. As such, for now I will opt for construction of 5 portfolios.
 
 ### Computing Returns
 Average equal-weighted monthly return for portfolio Y in decile X is defined as 1) taking the average of the returns for all stocks in portfolio Y in a given month, and 2) taking the average of (1) in all months in the backtesting period.
 
 Average value-weighted monthly return is adjusted for the stock's weight based on its market capitalization in relation to other stocks in the portfolio. Value-weighted returns for portfolios are more realistic as it mitigates some problems with asset allocation given liquidity constraints.
 
+I also compute average excess returns for each portfolio. This is the average of monthly excess returns, calculated by taking the portfolio's return minus the 10-year bond yield (annual divdied by 12) of Vietnamese government.
 
 ### Risk metrics
-I currently include standard deviation of the portfolio's monthly returns. It will be important to also include the beta of the portfolio, calculated as the covariance of portfolio's monthly returns and market's monthly returns, divided by the variance of the market's monthly returns. However, beta calculation is currently under development pending accurate data on the risk-free rate of returns in the backtesting period.
+I currently include beta and standard deviation of the portfolio's monthly returns. Beta of prtfolio is calculated as the covariance of portfolio's monthly returns and market's monthly returns, divided by the variance of the market's monthly returns.
 
 ## Results
+I want to present 2 set of results for portfolios formed based on size and based on book-to-market value. The size As seen in tables below:
 
-I want to present 3 set of results: size factor only, value factor only, and a combined factor. As seen in tables below:
 1) The results are so far promising given a large spread in returns between portfolios formed of stocks having the lowest factor value (decile 1) vs. those having the highest (decile 10) in both size and value factors (note: for size, larger companies are ranked lower). However, more invetigation is needed to see whether these effects go away when accounting for beta and to see the resulting Sharpe ratio.
 2) Second observation is that for each decile portfolio the value weighted version generally has lower average returns than equal weighted portfolios. This is reasonable as equal weighted portfolio gives more weight to smaller companies than otherwise would be based on market cap, and the size effect thus gets compounded.
 3) Final observation is that the differences in returns are most clear at the edges - meaning portfolios of decile 3 to 7 have mixed results given there are more factors at play here.

@@ -40,11 +40,7 @@ In my program, I take several steps to clean the data and select applicable univ
 The purpose of the program is to 1) rank the applicable companies in universe based on a quantitative factor, 2) put them into portfolios (i.e. having equal number of stocks in each portfolio), and 4) compute the average monthly returns and risk metrics of these equal-sized portfolios over the backtesting period
 
 ### Factor definition
-I examine two factors presented by Fama & French: Size & Value
-
-Size factor here is defined as the market value (ME) at the time of purchase, equals the price at time T x the total oustanding share at time T.
-
-Value factor here is defined as Book-to-market Equity (BE/ME). Book value (BE) is the total equity at time T-look back period. I exclude companies that have negative Book equity value.
+I examine two factors presented by Fama & French: Size & Value. Size factor here is defined as the market value (ME) at the time of purchase, equals the price at time T x the total oustanding share at time T.Value factor here is defined as Book-to-market Equity (BE/ME). Book value (BE) is the total equity at time T-look back period. I exclude companies that have negative Book equity value.
 
 ### Holding period & Portfolios
 Like Fama & French, I restructure portfolios after 1-year holding period. Portfolios are formed with approx. the same number of stocks, based on the decile of the stock's factor ranking. For example, for a 14-year backtesting period, if we divide the universe into 5 portfolios each year, 70 unique portfolios would be form.
@@ -52,17 +48,19 @@ Like Fama & French, I restructure portfolios after 1-year holding period. Portfo
 Due to data availability and the size of Vietnamese stock market, I realized that there were not enough companies in a portfolio if we choose to form 10 portfolios to meet statistical standards, especially in the early years. As such, for now I will opt for construction of 5 portfolios.
 
 ### Computing Returns
-Average equal-weighted monthly return for portfolio Y in decile X is defined as 1) taking the average of the returns for all stocks in portfolio Y in a given month, and 2) taking the average of (1) in all months in the backtesting period.
-
-Average value-weighted monthly return is adjusted for the stock's weight based on its market capitalization in relation to other stocks in the portfolio. Value-weighted returns for portfolios are more realistic as it mitigates some problems with asset allocation given liquidity constraints.
+Average equal-weighted monthly return for portfolio Y in decile X is defined as 1) taking the average of the returns for all stocks in portfolio Y in a given month, and 2) taking the average of (1) in all months in the backtesting period. Average value-weighted monthly return is adjusted for the stock's weight based on its market capitalization in relation to other stocks in the portfolio. Value-weighted returns for portfolios are more realistic as it mitigates some problems with asset allocation given liquidity constraints.
 
 I also compute average excess returns for each portfolio. This is the average of monthly excess returns, calculated by taking the portfolio's return minus the 10-year bond yield (annual divdied by 12) of Vietnamese government.
 
 ### Risk metrics
 I currently include beta and standard deviation of the portfolio's monthly returns. Beta of prtfolio is calculated as the covariance of portfolio's monthly returns and market's monthly returns, divided by the variance of the market's monthly returns.
 
-## Results
-I want to present 2 set of results for portfolios formed based on size and based on book-to-market value. The size As seen in tables below:
+
+I want to present 2 set of results for portfolios formed based on size and based on book-to-market value. The parameters for the model are:
+- 
+
+
+The size As seen in tables below:
 
 1) The results are so far promising given a large spread in returns between portfolios formed of stocks having the lowest factor value (decile 1) vs. those having the highest (decile 10) in both size and value factors (note: for size, larger companies are ranked lower). However, more invetigation is needed to see whether these effects go away when accounting for beta and to see the resulting Sharpe ratio.
 2) Second observation is that for each decile portfolio the value weighted version generally has lower average returns than equal weighted portfolios. This is reasonable as equal weighted portfolio gives more weight to smaller companies than otherwise would be based on market cap, and the size effect thus gets compounded.

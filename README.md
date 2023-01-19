@@ -55,12 +55,14 @@ I also compute average excess returns for each portfolio. This is the average of
 ### Risk metrics
 I currently include beta and standard deviation of the portfolio's monthly returns. Beta of prtfolio is calculated as the covariance of portfolio's monthly returns and market's monthly returns, divided by the variance of the market's monthly returns.
 
-
-I want to present 2 set of results for portfolios formed based on size and based on book-to-market value. The parameters for the model are:
-- 
-
-
-The size As seen in tables below:
+### Results
+The parameters for the model were:
+- Backtesting period: 31 December 2008 to 31 December 
+- Time between each restructuring:
+- Look back period for financial data:
+- Number of portfolios:
+- Minimum liquidity:
+- Benchmark: VN-INDEX monthgly returns
 
 1) The results are so far promising given a large spread in returns between portfolios formed of stocks having the lowest factor value (decile 1) vs. those having the highest (decile 10) in both size and value factors (note: for size, larger companies are ranked lower). However, more invetigation is needed to see whether these effects go away when accounting for beta and to see the resulting Sharpe ratio.
 2) Second observation is that for each decile portfolio the value weighted version generally has lower average returns than equal weighted portfolios. This is reasonable as equal weighted portfolio gives more weight to smaller companies than otherwise would be based on market cap, and the size effect thus gets compounded.

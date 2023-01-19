@@ -57,42 +57,33 @@ I currently include beta and standard deviation of the portfolio's monthly retur
 
 ### Results
 The parameters for the model were:
-- Backtesting period: 31 December 2008 to 31 December 
-- Time between each restructuring:
-- Look back period for financial data:
-- Number of portfolios:
-- Minimum liquidity:
+- Backtesting period: 31 December 2008 to 31 December 2022 (14 years)
+- Time between each restructuring: 12 months
+- Look back period for financial data: 6 months
+- Number of portfolios: 5
+- Minimum liquidity: 1,000,000,000 VND (~50,000 USD)
 - Benchmark: VN-INDEX monthgly returns
 
-1) The results are so far promising given a large spread in returns between portfolios formed of stocks having the lowest factor value (decile 1) vs. those having the highest (decile 10) in both size and value factors (note: for size, larger companies are ranked lower). However, more invetigation is needed to see whether these effects go away when accounting for beta and to see the resulting Sharpe ratio.
-2) Second observation is that for each decile portfolio the value weighted version generally has lower average returns than equal weighted portfolios. This is reasonable as equal weighted portfolio gives more weight to smaller companies than otherwise would be based on market cap, and the size effect thus gets compounded.
-3) Final observation is that the differences in returns are most clear at the edges - meaning portfolios of decile 3 to 7 have mixed results given there are more factors at play here.
+Below are the results based on equal-weighted and value-weighted returns for each factor:
 
-<img width="590" alt="Screenshot 2023-01-01 at 23 31 27" src="https://user-images.githubusercontent.com/97810132/210195251-71a04f36-0b0d-43bb-84be-2322bd61f920.png">
-
-<img width="596" alt="Screenshot 2023-01-01 at 23 33 22" src="https://user-images.githubusercontent.com/97810132/210195329-582b2e63-7902-45bf-9e25-f78d09f2e334.png">
-
-<img width="730" alt="Screenshot 2023-01-01 at 23 38 35" src="https://user-images.githubusercontent.com/97810132/210195548-d60d941e-110b-4140-ab97-8d1942661727.png">
-
-Here I present a table and graph of cumulative returns (starting with $100 in 2012) to show the difference over time between each portfolio and the benchmark which is VNIndex. You might wonder why the benchmark is doing relatively worse than the average portfolio. This is an interesting feature that merits further research. One hpothesis is that VN-Index is weighted much more by companies in portfolio decile 1 (large blue chips). Another hypothesis is VNIndex returns are dragged down by the companies outside of our sample, namely the financials companies.
-
-<img width="614" alt="Screenshot 2023-01-01 at 23 46 11" src="https://user-images.githubusercontent.com/97810132/210195849-5bf8eb0c-58c0-4664-8163-18bb2f172415.png">
-
-<img width="906" alt="Screenshot 2023-01-01 at 23 48 57" src="https://user-images.githubusercontent.com/97810132/210195948-e3b8a6e9-8a97-41e5-8bbf-24534c2c1e47.png">
+#### Size Factor (companies sorted from large to small in Portfolios 1 to 5)
+<img width="613" alt="Screenshot 2023-01-19 at 11 31 10" src="https://user-images.githubusercontent.com/97810132/213498875-3487bb3e-e3ac-43dd-8f0a-f02205a282d9.png">
 
 
-This table below shoes the investable universe for each year, after screening for financial & pricing data availability and sectors, gradually increased as more companies IPO-ed and the market becomes more mature.
-<img width="627" alt="Screenshot 2022-12-30 at 19 30 04" src="https://user-images.githubusercontent.com/97810132/210119689-d9e6d776-780a-4d09-9a8d-31db75da6570.png">
+#### Value Factor (companies sorted from high BE/ME to low BE/ME in Portfolios 1 to 5
+<img width="613" alt="Screenshot 2023-01-19 at 11 31 26" src="https://user-images.githubusercontent.com/97810132/213498933-534e1b0e-a1f3-433a-a659-1549466e3317.png">
 
-However, screening for minimum liquidity took out a lot of companies. This is a big issue in Vietnam if you are an institutional investor - a strategy might work but it would be difficult to scale up and diversify with lots of capital due to liquidity restrictions. However, the average trading volume has increased over time.
-<img width="950" alt="Screenshot 2022-12-30 at 19 35 34" src="https://user-images.githubusercontent.com/97810132/210119809-1b2b227b-f3e4-416f-9d25-39eda60fe9a7.png">
+The preliminary results look promising given a large spread in returns in lowest-ranked and highest-ranked portfolios in both size and value factors. Resulting alphas are also positive and above 1 for several portfolios. However, more invetigation is needed to see whether these effects go away when accounting for historical beta and to see the resulting Sharpe ratio. Second observation is that for each portfolio the value weighted version generally has lower average returns than equal weighted portfolios. This is reasonable as equal weighted portfolio gives more weight to smaller companies than otherwise would be based on market cap, and the size effect thus gets compounded.
 
-<img width="1236" alt="Screenshot 2023-01-02 at 00 31 34" src="https://user-images.githubusercontent.com/97810132/210197724-ecb5bc90-583d-45df-a153-57b24de2b4a3.png">
+Here I present a table and graph of example cumulative returns to show the difference over time between each portfolio ranked on Value Factor and the benchmark which is VNIndex. An interesting feature is Portfolios 3, 4, 5 significantly outperformed the market over time, whereas Portfolios 1 and 2 underperformed the market. VNIndex returns are perhaps dragged down down by by greater weights of larger companies in Portfolios 1 & 2, or by financial companies outside of our sample.
 
+<img width="571" alt="Screenshot 2023-01-19 at 11 36 55" src="https://user-images.githubusercontent.com/97810132/213501058-a2f28e21-ad91-4a8e-bd0d-07e752d70c3a.png">
 
-It is also clear that portfolios with lower factor ranking consistently have higher average trading value while those ranked high are more illiquid but offer higher potential for returns. See my attached prinouts of individual portfolios ranked based on the value factor in the last 3 years.
+<img width="627" alt="Screenshot 2023-01-19 at 11 38 50" src="https://user-images.githubusercontent.com/97810132/213501728-7fd2928e-1f18-4eaf-9397-5c33d967df21.png">
 
-<img width="950" alt="Screenshot 2022-12-30 at 19 39 39" src="https://user-images.githubusercontent.com/97810132/210119903-fb0b99f2-a228-4025-8021-9cd13d109b13.png">
+Next, I want to show the number of companies in our investable universe each year given certain screening criteria. As expected, number of companies gradually increased as more companies IPO-ed and the market became more mature.
+
+<img width="431" alt="Screenshot 2023-01-19 at 11 45 27" src="https://user-images.githubusercontent.com/97810132/213504385-694fb0e1-d711-41de-bbc3-daacc863dc8f.png">
 
 ## Conclusion
 I demonstrated that the factors that have been well researched in developed markets such as U.S. equities by Fama & French are also applicable in Vietnam. Adjusting for different backtesting period offers roughly the same results. However, much more research is needed to account for beta and other risks factors. I am also working on portfolio formation and trading simulation to factor in friction costs (liquidity, trading fees, etc).

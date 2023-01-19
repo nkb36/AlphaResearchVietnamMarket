@@ -56,7 +56,7 @@ I also compute average excess returns for each portfolio. This is the average of
 I currently include beta and standard deviation of the portfolio's monthly returns. Beta of prtfolio is calculated as the covariance of portfolio's monthly returns and market's monthly returns, divided by the variance of the market's monthly returns.
 
 ### Results
-The parameters for the model were:
+The parameters for the model were (although these can be adjusted as desired):
 - Backtesting period: 31 December 2008 to 31 December 2022 (14 years)
 - Time between each restructuring: 12 months
 - Look back period for financial data: 6 months
@@ -70,7 +70,7 @@ Below are the results based on equal-weighted and value-weighted returns for eac
 <img width="613" alt="Screenshot 2023-01-19 at 11 31 10" src="https://user-images.githubusercontent.com/97810132/213498875-3487bb3e-e3ac-43dd-8f0a-f02205a282d9.png">
 
 
-#### Value Factor (companies sorted from high BE/ME to low BE/ME in Portfolios 1 to 5
+#### Value Factor (companies sorted from high BE/ME to low BE/ME in Portfolios 1 to 5)
 <img width="613" alt="Screenshot 2023-01-19 at 11 31 26" src="https://user-images.githubusercontent.com/97810132/213498933-534e1b0e-a1f3-433a-a659-1549466e3317.png">
 
 The preliminary results look promising given a large spread in returns in lowest-ranked and highest-ranked portfolios in both size and value factors. Resulting alphas are also positive and above 1 for several portfolios. However, more invetigation is needed to see whether these effects go away when accounting for historical beta and to see the resulting Sharpe ratio. Second observation is that for each portfolio the value weighted version generally has lower average returns than equal weighted portfolios. This is reasonable as equal weighted portfolio gives more weight to smaller companies than otherwise would be based on market cap, and the size effect thus gets compounded.

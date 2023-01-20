@@ -67,11 +67,11 @@ The parameters for the model were (although these can be adjusted as desired):
 Below are the results based on equal-weighted and value-weighted returns for each factor:
 
 #### Size Factor (companies sorted from large to small in Portfolios 1 to 5)
-<img width="613" alt="Screenshot 2023-01-19 at 11 31 10" src="https://user-images.githubusercontent.com/97810132/213498875-3487bb3e-e3ac-43dd-8f0a-f02205a282d9.png">
+<img width="607" alt="Screenshot 2023-01-20 at 12 32 39" src="https://user-images.githubusercontent.com/97810132/213765488-038fa61a-f531-428b-a0cb-0b8ed4cb2a48.png">
 
 
 #### Value Factor (companies sorted from high BE/ME to low BE/ME in Portfolios 1 to 5)
-<img width="613" alt="Screenshot 2023-01-19 at 11 31 26" src="https://user-images.githubusercontent.com/97810132/213498933-534e1b0e-a1f3-433a-a659-1549466e3317.png">
+<img width="607" alt="Screenshot 2023-01-20 at 12 32 52" src="https://user-images.githubusercontent.com/97810132/213765535-638d545d-3a9b-4ea1-bd60-3ef58f94a665.png">
 
 The preliminary results look promising given a large spread in returns in lowest-ranked and highest-ranked portfolios in both size and value factors. Resulting alphas are also positive and above 1 for several portfolios. However, more invetigation is needed to see whether these effects go away when accounting for historical beta and to see the resulting Sharpe ratio. Second observation is that for each portfolio the value weighted version generally has lower average returns than equal weighted portfolios. This is reasonable as equal weighted portfolio gives more weight to smaller companies than otherwise would be based on market cap, and the size effect thus gets compounded.
 

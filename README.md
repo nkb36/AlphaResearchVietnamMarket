@@ -1,5 +1,5 @@
 # AlphaResearchVietnamMarket
-A research repository to investigate quantitative investment strategies for Vietnamese stock market (Updated January 18, 2023)
+A research repository to investigate quantitative investment strategies for Vietnamese stock market (Updated January 20, 2023)
 
 ## Background
 Quantitative investment strategies are gaining traction, and I want to investigate which strategies can produce good alphas - excess risk-adjusted returns - in the context of Vietnamese stock market. I believe emerging markets like Vietnam can potentially have greater alphas and excess returns based on factors that have gone out of fashion / stopped working in developed markets due to saturation. Done correctly, quant investing can potentially help investors consistently beat the market, lower ideosyncratic risks through proper diversification, and impose discipline on stock selection.
